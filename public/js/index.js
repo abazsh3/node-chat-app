@@ -6,7 +6,7 @@ socket.on("disconnect",function(){
     console.log("disconnected");
 });
 socket.on("newMessage",function (message) {
-    console.log("new email",message);
+    console.log("new message",message);
 });
 
 
