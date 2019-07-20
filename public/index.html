@@ -24,7 +24,18 @@
 </div>
 
 
-
+  <script src="/js/libs/mustache.js"></script>
+  <script type="text/template" id="message-template">
+    <li class="message">
+      <div class="message__title">
+        <h4>{{from}}</h4>
+        <span>{{createdAt}}</span>
+      </div>
+      <div class="message__body">
+        <p>{{text}}</p>
+      </div>
+    </li>
+  </script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/jquery-3.4.1.min.js"></script>
   <script src="/js/index.js"></script>

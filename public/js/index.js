@@ -9,11 +9,15 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMessage', function (message) {
-  console.log('newMessage', message);
   let formattedTime = moment(message.createdAt).format("h:mm a");
-  let li =jQuery('<li></li>');
-  li.text(`${message.from} ${formattedTime} : ${message.text}`);
-  jQuery('#message').append(li);
+  console.log('newMessage', message);
+  let template = jQuery('#message-template').html();
+  let html = Mustache.render(template,{
+    text:message.text,
+    from:message.from,
+    createdAt:formattedTime
+  });
+  jQuery('#message').append(html);
 });
 
 jQuery('#message-form').on('submit', function (e) {
