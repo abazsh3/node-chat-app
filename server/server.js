@@ -2,6 +2,7 @@ const path = require('path');
 const socketIo = require('socket.io');
 const http = require('http');
 const {generateMessage} = require('./utils/message');
+const _ =require('lodash');
 let express = require('express');
 let publicPath = path.join(__dirname, "../public");
 let app = express();
@@ -14,11 +15,18 @@ io.on("connection", (socket) => {
     socket.emit("newMessage", generateMessage("Admin", "welcome to chat app"));
     socket.broadcast.emit("newMessage", generateMessage("Admin", "new user joined"));
     socket.on("createMessage", (message, callback) => {
-
+        // if (!_.isPlainObject(message)){
+        //     console.log("not object");
+        //     message=JSON.parse(message);
+        // }
         console.log(message);
         io.emit("newMessage", generateMessage(message.from, message.text));
 
-        callback();
+        try {
+            callback();
+        }catch (e) {
+            
+        }
         // socket.broadcast.emit("newMessage",{
         //     from:message.from,
         //     text:message.text,
