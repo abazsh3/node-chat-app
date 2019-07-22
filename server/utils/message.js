@@ -5,4 +5,10 @@ let generateMessage =(from,text)=>{
             createdAt: moment().valueOf()
             };
 };
-module.exports={generateMessage};
+let generateMessage2=(from,text)=>{
+    return{
+        "from":from,
+        "text":text
+    }
+};
+module.exports={generateMessage,generateMessage2};
